@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+		.hide {
+			display: none;
+		}
+
+		.student_button,
+		.member_button,
+		.submit-button,
+		.reset-button {
+			border: 2px solid black;
+			min-height: 1.5vw;
+			min-width: 15vw;
+		}
+
+		.btn:hover {
+			opacity: 1;
+		}
+
+		p.main {
+			text-align: justify;
+		}
+
+		body {
+			position: relative;
+			min-height: 100vh;
+			padding-bottom: 14rem;
+		}
+
+		.custom-footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 14rem;
+
+		}
+
+		/*for mobile phones and tablets (both)*/
+		@media only screen and (min-width: 320px) and (max-width: 767px) {
+			.custom-footer {
+				position: static !important;
+			}
+		}
+
+		/* for mobile phones only*/
+		@media only screen and (min-width: 320px) and (max-width: 480px) {
+			.custom-footer {
+				position: static !important;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!--NAVBAR SECTION BEGIN-->
+	<nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-xs navbar-dark bg-dark">
+		<a class="navbar-brand" href="HomePage.html">
+			<h4 style="font-size:2vw;color: orange;">STUDENT GRIEVANCE SUPPORT</h4>
+			<h6 style="font-size:1vw;color: yellow;text-align: center;">REPORT AND RESOLVE AT YOUR FINGERTIPS</h6>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="HomePage.html">
+						<h5 style="color: white;">Home</h5>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="AboutUs.jsp">
+						<h5 style="color: white;">About Us</h5>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="ContactUs.jsp">
+						<h5 style="color: white;">Contact Us</h5>
+					</a>
+				</li>
+			</ul>
+			<form method="post" action="Login" class="form-inline">
+				<div class="form-group">
+					<input type="email" class="form-control mr-xs-2 mr-md-2" name="login_email" id="login_email"
+						placeholder="Email" required>
+				</div>
+				<div style="display:listitem;padding-top:1.5vw;">
+					<div class="form-group">
+						<input type="password" class="form-control mr-xs-2 mr-md-2" name="login_password"
+							id="login_password" placeholder="Password" required>
+					</div>
+					<small class="form-text" style="text-align:center;">
+						<a href="Verify.html">Forgot Password?</a>
+					</small>
+				</div>
+				&nbsp;
+				<div class="form-group">
+					<button class="btn btn-info" type="submit" value="Log In">Sign In</button>
+				</div>
+			</form>
+		</div>
+	</nav>
+	<!--NAVBAR SECTION END-->
+
+	<!--MAIN BODY BEGIN-->
+	<div class="page_div">
+		<!--Hidden Division-->
+		<div class="hidden" id="gg" style="text-align: center;"></div>
+
+		<div style="text-align: center;">
+			<h2 style="color:blue;"><b>Create an account</b></h2><br>
+		</div>
+		<!--Form toggle buttons for Student and Member-->
+		<div class="container" style="display: flex;justify-content:center">
+			<div>
+				<button class="btn btn-success active student_button active">
+					<b>STUDENT</b>
+				</button>
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<div>
+				<button class="btn btn-info active member_button">
+					<b>MEMBER</b>
+				</button>
+			</div>
+		</div>
+		<br>
+		<!--Student Registration Form-->
+		<div id="form1" style="justify-content:center;" class="container bg-light col-md-6 col-xs-6">
+			<form name="StudentSignUpForm" action="RegisterOTP" method="post" onsubmit="return validate(this);">
+				<input type="hidden" name="form-name" value="Student" />
+
+				<div class="form-row">
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="firstname">First Name: </label>
+						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"
+							required>
+					</div>
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="lastname">Last Name: </label>
+						<input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name"
+							required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email: </label>
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<div class="input-group-text">@</div>
+						</div>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+					</div>
+				</div>
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="password">Password: </label>
+						<input type="password" name="password" class="form-control" id="password"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" placeholder="Password"
+							onkeyup="passwordCheck();" aria-describedby="passwordHelpBlock" required>
+						<small id="passwordHelpBlock" class="form-text text-muted">
+							It must contain 1 number, 1 capital letter, 1 small letter, and have atleast 6 characters.
+						</small>
+					</div>
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="confirmPassword"> Confirm Password: </label>
+						<input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+							placeholder="Confirm Password" onkeyup="passwordCheck();" required>
+						<small id="message" class="form-text" style="color:red"></small>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-4 col-xs-4">
+						<label for="gender"> Gender: </label><br>
+						<select class="custom-select" name="gender" id="gender" required>
+							<option value="----Gender----" selected disabled>----Gender----</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4 col-xs-4">
+						<label for="gender"> Course: </label><br>
+						<select class="custom-select" name="course" id="course" required>
+							<option value="----Course----" selected disabled>----Course----</option>
+							<option value="Bachelor of Technology">Bachelor of Technology</option>
+							<option value="Master of Technology">Master of Technology</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4 col-xs-4">
+						<label for="year"> Year: </label><br>
+						<select class="custom-select" name="year" id="year" required>
+							<option value="----Year----" selected disabled>----Year----</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="branch"> Branch: </label><br>
+					<select class="custom-select" name="branch" id="branch" required>
+						<option value="----Branch----" disabled selected>----Branch----</option>
+						<option value="Computer Science and Engineering">Computer Science and Engineering</option>
+						<option value="Information Technology">Information Technology</option>
+						<option value="Electronics and Communication Engineering">Electronics and Communication
+							Engineering</option>
+						<option value="Electronics and Instrumentation Engineering">Electronics and Instrumentation
+							Engineering</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="college">College: </label><br>
+					<select class="custom-select" name="college" id="college" required>
+						<option value="----College----" selected disabled>----College----</option>
+						<option value="Keshav Memorial Institute of Technology">Keshav Memorial Institute of Technology
+						</option>
+						<option value="Neil Gogte Institute of Technology">Neil Gogte Institute of Technology</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="university"> University: </label><br>
+					<select class="custom-select" name="university" id="university" required>
+						<option value="----University----" disabled selected>----University----</option>
+						<option value="Jawaharlal Nehru Technological University Hyderabad">Jawaharlal Nehru
+							Technological University Hyderabad</option>
+						<option value="Osmania University Hyderabad">Osmania University Hyderabad</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<div class="form-check">
+						<input class="form-check-input is-invalid" type="checkbox" value="" id="agree" name="agree"
+							required>
+						<label class="form-check-label" for="agree">
+							Agree to
+							<a href="#" data-toggle="modal" data-target="#myModal"><u>Terms and Conditions</u></a>
+						</label>
+						<div class="invalid-feedback">
+							You must agree before submitting.
+						</div>
+					</div>
+				</div>
+
+
+				<div class="modal" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Terms and conditions</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<p class="main">
+									<p style="color:blue;">Welcome to Student Grievance Support!</p>
+									<ul>
+										<li>
+											These terms and conditions outline the rules and regulations for the use of
+											SIH's StudentGrievanceSupport.
+											By accessing this website we assume you accept these terms and conditions.
+											Do not continue to use Student Grievance if you do not
+											agree to take all of the terms and conditions stated on this page.
+										</li>
+										<li>
+											The website is NOT responsible for grievance redressal, rather it only
+											facilitates the redressal process.
+											The designated grievance members of respective colleges and universities are
+											solely responsible for any kind of redressal.
+										</li>
+										<li>
+											The website collects and stores your data as long as you hold an account
+											with it. It will be used by members wherever deemed necessary
+											and for redressal purpose only. Your data shall be deleted completely once
+											you stop using/delete your account.
+										</li>
+									</ul>
+								</p>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row container" style="justify-content: center;">
+					<div col="auto">
+						<button type="submit" id="submit" style="opacity: 0.9"
+							class="btn btn-primary active submit-button">
+							<b>Sign Up</b>
+						</button>
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<div col="auto">
+						<button type="reset" style="opacity: 0.9" class="btn btn-danger active reset-button">
+							<b>Reset</b>
+						</button>
+					</div>
+				</div>
+				<br>
+			</form>
+		</div>
+
+
+		<!--Grievance Committee Member Registration Form-->
+		<div id="form2" style="justify-content:center;" class="container bg-light col-md-6 col-xs-6">
+			<form name="MemberSignUpForm" action="RegisterOTP" method="post" onsubmit="return mvalidate(this);">
+				<input type="hidden" name="form-name" value="Member" />
+
+				<div class="form-group">
+					<p>Select Jurisdiction:</p>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="coll" name="jurisdiction" value="College" class="custom-control-input"
+							required onclick="func1('c');">
+						<label class="custom-control-label" for="coll">College</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="univ" name="jurisdiction" value="University"
+							class="custom-control-input" onclick="func1('u');">
+						<label class="custom-control-label" for="univ">University</label>
+					</div>
+				</div>
+
+
+				<div class="form-group" id="mc">
+					<label for="mcollege">College: </label><br>
+					<select class="custom-select" name="mcollege" id="mcollege" required>
+						<option value="----College----" selected disabled>----College----</option>
+						<option value="Keshav Memorial Institute of Technology">Keshav Memorial Institute of Technology
+						</option>
+						<option value="Neil Gogte Institute of Technology">Neil Gogte Institute of Technology</option>
+					</select>
+				</div>
+
+				<div class="form-group" id="mu">
+					<label for="muniversity"> University: </label><br>
+					<select class="custom-select" name="muniversity" id="muniversity" required>
+						<option value="----University----" disabled selected>----University----</option>
+						<option value="Jawaharlal Nehru Technological University Hyderabad">Jawaharlal Nehru
+							Technological University Hyderabad</option>
+						<option value="Osmania University Hyderabad">Osmania University Hyderabad</option>
+					</select>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="mfirstname">First Name: </label>
+						<input type="text" class="form-control" id="mfirstname" name="mfirstname"
+							placeholder="First Name" required>
+					</div>
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="mlastname">Last Name: </label>
+						<input type="text" class="form-control" id="mlastname" name="mlastname" placeholder="Last Name"
+							required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="memail">Email: </label>
+					<div class="input-group mb-2">
+						<div class="input-group-prepend">
+							<div class="input-group-text">@</div>
+						</div>
+						<input type="email" class="form-control" id="memail" name="memail" placeholder="Email" required>
+					</div>
+				</div>
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="mpassword">Password: </label>
+						<input type="password" name="mpassword" class="form-control" id="mpassword"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" placeholder="Password"
+							onkeyup="mpasswordCheck();" aria-describedby="passwordHelpBlock" required>
+						<small id="passwordHelpBlock" class="form-text text-muted">
+							It must contain 1 number, 1 capital letter, 1 small letter, and have atleast 6 characters.
+						</small>
+					</div>
+					<div class="form-group col-md-6 col-xs-6">
+						<label for="mconfirmPassword"> Confirm Password: </label>
+						<input type="password" class="form-control" name="mconfirmPassword" id="mconfirmPassword"
+							placeholder="Confirm Password" onkeyup="mpasswordCheck();" required>
+						<small id="message1" class="form-text" style="color:red"></small>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="mgender">Gender: </label>
+					<select class="custom-select" name="mgender" id="mgender" required>
+						<option value="----Gender----" selected disabled>----Gender----</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option>
+					</select>
+				</div>
+
+
+
+				<div class="form-group">
+					<div class="form-check">
+						<input class="form-check-input is-invalid" type="checkbox" value="" id="magree" name="magree"
+							required>
+						<label class="form-check-label" for="agree">
+							Agree to
+							<a href="#" data-toggle="modal" data-target="#myModal1"><u>Terms and Conditions</u></a>
+						</label>
+						<div class="invalid-feedback">
+							You must agree before submitting.
+						</div>
+					</div>
+				</div>
+
+				<div class="modal" id="myModal1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Terms and conditions</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<p class="main">
+									<p style="color:blue;">Welcome to Student Grievance Support!</p>
+									<ul>
+										<li>
+											These terms and conditions outline the rules and regulations for the use of
+											SIH's StudentGrievanceSupport.
+											By accessing this website we assume you accept these terms and conditions.
+											Do not continue to use Student Grievance if you do not
+											agree to take all of the terms and conditions stated on this page.
+										</li>
+										<li>
+											The website is NOT responsible for grievance redressal, rather it only
+											facilitates the redressal process.
+											The designated grievance members of respective colleges and universities are
+											solely responsible for any kind of redressal.
+										</li>
+										<li>
+											The website collects and stores your data as long as you hold an account
+											with it. It will be used by members wherever deemed necessary
+											and for redressal purpose only. Your data shall be deleted completely once
+											you stop using/delete your account.
+										</li>
+									</ul>
+								</p>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row container" style="justify-content: center;">
+					<div col="auto">
+						<button type="submit" id="submit" style="opacity: 0.9"
+							class="btn btn-primary active submit-button">
+							<b>Sign Up</b>
+						</button>
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<div col="auto">
+						<button type="reset" style="opacity: 0.9" class="btn btn-danger active reset-button">
+							<b>Reset</b>
+						</button>
+					</div>
+				</div>
+				<br>
+			</form>
+		</div>
+		<script async type="text/javascript"
+			src="https://userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/25b7d15de1f8cf77b6cf909ea947a0191ae07fe6694b9c8fb597783d11f9940a.js"></script>
+	</div>
+	<br>
+</body>
+
+<!--FOOTER BEGIN-->
+<div id="FooterPlaceholder" class="custom-footer"></div>
+<!--FOOTER END-->
+
+<!--SCRIPT BEGIN-->
+<script type="text/javascript">
+
+	$(function () {
+		$("#FooterPlaceholder").load("Footer.html");
+	});
+
+	var url = window.location.search;
+	url = url.replace("?", ''); // remove the ?
+	if (url == "param=otp") {
+		$('.hidden').addClass('alert alert-danger');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "WRONG OTP!";
+	} else if (url == "param=exist") {
+		$('.hidden').addClass('alert alert-warning');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "USER WITH THAT EMAIL ALREADY EXISTS!";
+	} else if (url == "param=mexist") {
+		$('.hidden').addClass('alert alert-warning');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "MEMBER OF THAT COLLEGE/UNIVERSITY ALREADY EXISTS !";
+	} else if (url == "param=wrong") {
+		$('.hidden').addClass('alert alert-danger');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "OOPS, SOMETHING WENT WRONG!";
+	} else if (url == "param=pchange") {
+		$('.hidden').addClass('alert alert-success');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "PASSWORD CHANGED!";
+	} else if (url == "param=accdelete") {
+		$('.hidden').addClass('alert alert-success');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "ACCOUNT DELETION SUCCESSFUL :(";
+	} else if (url == "param=feedback") {
+		$('.hidden').addClass('alert alert-success');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "THANK YOU FOR THE FEEDBACK :)";
+	}
+
+	$('#form2').hide();
+	$('#firstname').focus();
+
+	$('.member_button').css('opacity', '0.5');//inactive member button
+	$('.student_button').css('outline', 'orange solid 4px');//active student button
+
+	$('.student_button').click(function (e) { //when student button is clicked, student form is displayed
+		e.preventDefault();
+		$('.student_button').css('opacity', '1');
+		$('.member_button').css('opacity', '0.5');
+		$('.student_button').css('outline', 'orange solid 4px');
+		$('.member_button').css('outline', 'none');
+		$('#form1').show();
+		$('#form2').hide();
+		$('#firstname').focus(); //Should appear after $('.login__form').show(); because if it's before that, the register form doesn't exist in the DOM
+	});
+
+	$('.member_button').click(function (e) { //when member button is clicked, member form is displayed
+		e.preventDefault();
+		$('.student_button').css('opacity', '0.5');
+		$('.member_button').css('opacity', '1');
+		$('.student_button').css('outline', 'none');
+		$('.member_button').css('outline', 'orange solid 4px');
+		$('#form2').show();
+		$('#form1').hide();
+		$('#jurisdiction').focus(); //Should appear after $('.register__form').show(); because if it's before that, the register form doesn't exist in the DOM
+	});
+
+	function func1(category) {
+		if (category == 'c') {
+			$('#mc').show();
+			$('#mu').show();
+		} else {
+			$('#mc').hide();
+			$('#mu').show();
+		}
+	}
+
+	function passwordCheck(StudentSignUpForm) //Student Form-to check password and confirm password fields are equal or not
+	{
+
+		if (document.getElementById('password').value == document
+			.getElementById('confirmPassword').value) {
+			document.getElementById('message').style.color = 'green';
+			document.getElementById('message').innerHTML = 'Match';
+		} else {
+			document.getElementById('message').style.color = 'red';
+			document.getElementById('message').innerHTML = 'X';
+		}
+	}
+
+	function mpasswordCheck(MemberSignUpForm) //Member Form-to check password and confirm password fields are equal or not
+	{
+
+		if (document.getElementById('mpassword').value == document
+			.getElementById('mconfirmPassword').value) {
+			document.getElementById('message1').style.color = 'green';
+			document.getElementById('message1').innerHTML = 'Match';
+		} else {
+			document.getElementById('message1').style.color = 'red';
+			document.getElementById('message1').innerHTML = 'X';
+		}
+	}
+
+	function validate(StudentSignUpForm) //Student Form Validation
+	{
+		var letters = /^[a-zA-z]+([\s][a-zA-Z]+)*$/;//^[a-zA-Z][a-zA-Z ]*$
+		var firstname = StudentSignUpForm.firstname.value;
+		if (!letters.test(firstname)) {
+			alert('First Name should have only letters!');
+			StudentSignUpForm.firstname.focus();
+			return false;
+		}
+		var lastname = StudentSignUpForm.lastname.value;
+		if (!letters.test(lastname)) {
+			alert('Last Name should have only letters!');
+			StudentSignUpForm.lastname.focus();
+			return false;
+		}
+		var email = StudentSignUpForm.email.value;
+		var email_pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if (!email_pattern.test(email)) {
+			alert('Email format is wrong!');
+			StudentSignUpForm.email.focus();
+			return false;
+		}
+
+		if (!(StudentSignUpForm.password.value == StudentSignUpForm.confirmPassword.value)) {
+			alert("Passwords don't match");
+			StudentSignUpForm.confirmPassword.focus();
+			return false;
+		}
+		if (StudentSignUpForm.course.value == "----Course----") {
+			alert("Please select course...");
+			return false;
+		}
+		if (StudentSignUpForm.year.value == "----Year----") {
+			alert("Please select year...");
+			return false;
+		}
+		if (StudentSignUpForm.gender.value == "----Gender----") {
+			alert("Please select gender...");
+			return false;
+		}
+		if (StudentSignUpForm.branch.value == "----Branch----") {
+			alert("Please select branch...");
+			return false;
+		}
+		if (StudentSignUpForm.college.value == "----College----") {
+			alert("Please select college...");
+			return false;
+		}
+		if (StudentSignUpForm.university.value == "----University----") {
+			alert("Please select university...");
+			return false;
+		}
+		if (!(StudentSignUpForm.agree.checked == true)) {
+			alert("Agree to the terms and conditions!");
+			StudentSignUpForm.agree.focus();
+			return false;
+		}
+		return true;
+	}
+
+	function mvalidate(MemberSignUpForm) //Member Form Validation
+	{
+		if (MemberSignUpForm.jurisdiction.value == "College") {
+			if (MemberSignUpForm.mcollege.value == "----College----") {
+				alert("Please select college...");
+				return false;
+			}
+		}
+
+		if (MemberSignUpForm.jurisdiction.value == "University"
+			|| MemberSignUpForm.jurisdiction.value == "College") {
+			if (MemberSignUpForm.muniversity.value == "----University----") {
+				alert("Please select university...");
+				return false;
+			}
+		}
+
+		var letters = /^[a-zA-z]+([\s][a-zA-Z]+)*$/;//^[a-zA-Z][a-zA-Z ]*$
+		var mfirstname = MemberSignUpForm.mfirstname.value;
+		if (!letters.test(mfirstname)) {
+			alert('First Name should have only letters!');
+			MemberSignUpForm.mfirstname.focus();
+			return false;
+		}
+		var mlastname = MemberSignUpForm.mlastname.value;
+		if (!letters.test(mlastname)) {
+			alert('Last Name should have only letters!');
+			MemberSignUpForm.mlastname.focus();
+			return false;
+		}
+		var memail = MemberSignUpForm.memail.value;
+		var email_pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if (!email_pattern.test(memail)) {
+			alert('Email format is wrong!');
+			MemberSignUpForm.memail.focus();
+			return false;
+		}
+
+		if (MemberSignUpForm.mgender.value == "----Gender----") {
+			alert("Please select gender...");
+			return false;
+		}
+
+		if (!(MemberSignUpForm.mpassword.value == MemberSignUpForm.mconfirmPassword.value)) {
+			alert("Passwords don't match");
+			MemberSignUpForm.mconfirmPassword.focus();
+			return false;
+		}
+		if (!(MemberSignUpForm.magree.checked == true)) {
+			alert("Agree to the terms and conditions!");
+			MemberSignUpForm.magree.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+<!--SCRIPT END-->
+
+</html>

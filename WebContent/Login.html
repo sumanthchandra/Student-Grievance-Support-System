@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Login Page</title>
+	<style type="text/css">
+		#box1 {
+
+			border: 1px;
+			border-style: solid;
+			border-color: black;
+			padding: 30px;
+			margin-top: 25px;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container col-md-6 col-xs-6" style="justify-content: center;">
+		<br>
+		<a style="text-align: center;color:white" href="HomePage.html">
+			<h3 style="color: orange;"><b>STUDENT GRIEVANCE SUPPORT</b></h3>
+		</a>
+	</div>
+	<div id="box1" style="justify-content:center;" class="container col-md-3 col-xs-3 bg-light">
+		<div class="hidden" id="gg" style="text-align: center;"></div>
+		<h4>Login</h4>
+		<form action="Login" method="POST">
+			<div class="form-group">
+				<label for="login_email">Email</label>
+				<input type="email" class="form-control" id="login_email" name="login_email" required>
+			</div>
+			<div class="form-group">
+				<label for="login_password">Password</label>
+				<input type="password" name="login_password" id="login_password" class="form-control" required>
+			</div>
+
+			<div style="text-align: center;">
+				<a href="Verify.html">Forgot Password?</a>
+				<br><br>
+				<input type="submit" class="btn btn-success col-md-5 col-xs-5" name="submit" value="Sign In">
+		</form>
+		<br><br>
+		<span>Did not register yet?</span><br>
+		<a class="btn btn-info col-md-7 col-xs-7" href="HomePage.html">Create your account</a>
+	</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$('.hidden').hide();
+	var url = window.location.search;
+	url = url.replace("?", ''); // remove the ?
+	if (url == "param=success") {
+		$('.hidden').addClass('alert alert-success');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "SUCCESSFULLY REGISTERED";
+
+	}
+	if (url == "param=fail") {
+		$('.hidden').addClass('alert alert-danger');
+		$('.hidden').show();
+		//document.getElementById('gg').style.color = "red";
+		document.getElementById('gg').innerHTML = "WRONG PASSWORD";
+
+	}
+	if (url == "param=fail1") {
+		$('.hidden').addClass('alert alert-danger');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "NO SUCH USER EXISTS";
+
+	}
+	if (url == "param=again") {
+		$('.hidden').addClass('alert alert-warning');
+		$('.hidden').show();
+		document.getElementById('gg').innerHTML = "YOU NEED TO LOGIN";
+
+	}
+</script>
+
+</html>
